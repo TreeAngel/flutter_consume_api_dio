@@ -51,4 +51,43 @@ class ApiController {
       throw Exception(e.toString());
     }
   }
+
+  static Future deleteData(String url) async {
+    try {
+      final response = await dio.delete(
+        url,
+        options: token != null
+            ? Options(headers: {'Authorization': 'Bearer $token'})
+            : null,
+      );
+      if (response.statusCode! >= 200 && response.statusCode! <= 299) {
+        return response.data;
+      } else {
+        throw Exception(
+            'Status code: ${response.statusCode} | Message: ${response.statusMessage}');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  static Future putData(String url, dynamic data) async {
+    try {
+      final response = await dio.put(
+        url,
+        options: token != null
+            ? Options(headers: {'Authorization': 'Bearer $token'})
+            : null,
+        data: data,
+      );
+      if (response.statusCode! >= 200 && response.statusCode! <= 299) {
+        return response.data;
+      } else {
+        throw Exception(
+            'Status code: ${response.statusCode} | Message: ${response.statusMessage}');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

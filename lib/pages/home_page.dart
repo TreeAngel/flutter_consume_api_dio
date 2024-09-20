@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'delete_page.dart';
 import 'get_page.dart';
 import 'post_page.dart';
+import 'update_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,10 +27,10 @@ class _HomePageState extends State<HomePage> {
         selectedPage = const GetPage();
       case 1:
         selectedPage = const PostPage();
-      // case 2:
-      //   selectedPage = const PutPage();
-      // case 3:
-      //   selectedPage = const DeletePage();
+      case 2:
+        selectedPage = const UpdatePage();
+      case 3:
+        selectedPage = const DeletePage();
       default:
         selectedPage = const Placeholder();
     }
@@ -62,9 +64,6 @@ class _HomePageState extends State<HomePage> {
               currentIndex: selectedIndex,
               onTap: (value) {
                 setState(() {
-                  if (value == 2 || value == 3) {
-                    return;
-                  }
                   selectedIndex = value;
                 });
               },
